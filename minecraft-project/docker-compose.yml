@@ -1,0 +1,16 @@
+services:
+  minecraft:
+    image: itzg/minecraft-server
+    ports:
+      - "25565:25565"
+    environment:
+      TYPE: PAPER
+      EULA: "TRUE"
+      VERSION: "1.19.2"
+      COPY_PLUGINS_SRC: /plugins
+    volumes:
+      - ./mc_data:/data
+      - ./plugins:/plugins:ro
+
+volumes:
+  mc_data:
