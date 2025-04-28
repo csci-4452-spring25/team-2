@@ -1,4 +1,6 @@
 import json
+import os
+import sys
 import boto3
 
 # === CONFIGURATION ===
@@ -10,12 +12,49 @@ REGION_NAME = "us-west-2"
 dynamodb = boto3.resource('dynamodb', region_name=REGION_NAME)
 table = dynamodb.Table(DYNAMODB_TABLE)
 
-# === LOAD PLAYER DATA ===
-with open(SAVE_FILE, "r") as f:
-    all_data = json.load(f)
+# === FUNCTION: PULL DATA FROM DYNAMODB INTO FILE ===
+def load_player_data_from_dynamodb():
+    if not os.path.exists(SAVE_FILE):
+        print(f"{SAVE_FILE} not found. Creating an empty file...")
+        with open(SAVE_FILE, "w") as f:
+            json.dump([], f)
+    
+    response = table.scan()
+    player_data = response.get('Items', [])
+    
+    with open(SAVE_FILE, "w") as f:
+        json.dump(player_data, f, indent=4)
+    
+    print(f"Pulled {len(player_data)} players from DynamoDB and saved to {SAVE_FILE}.")
 
-# === BATCH UPLOAD ===
-with table.batch_writer() as batch:
-    for player_data in all_data:
-        batch.put_item(Item=player_data)
-        print(f"Queued player {player_data['player']} for upload.")
+# === FUNCTION: PUSH LOCAL FILE TO DYNAMODB ===
+def upload_player_data_to_dynamodb():
+    if not os.path.exists(SAVE_FILE):
+        print(f"Error: {SAVE_FILE} not found. Nothing to upload.")
+        return
+
+    with open(SAVE_FILE, "r") as f:
+        player_data = json.load(f)
+    
+    with table.batch_writer() as batch:
+        for player in player_data:
+            batch.put_item(Item=player)
+            print(f"Uploaded player {player['player']}.")
+
+    print("All player data uploaded to DynamoDB.")
+
+# === MAIN ENTRY POINT ===
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python sync_dynamodb.py [upload|download]")
+        sys.exit(1)
+
+    action = sys.argv[1].lower()
+
+    if action == "download":
+        load_player_data_from_dynamodb()
+    elif action == "upload":
+        upload_player_data_to_dynamodb()
+    else:
+        print("Invalid action. Use 'upload' or 'download'.")
+        sys.exit(1)

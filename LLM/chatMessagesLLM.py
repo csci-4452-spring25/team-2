@@ -4,7 +4,7 @@ from openai import OpenAI
 
 SAVE_FILE = "player_chat_history.json"
 PLAYER_NAME = "Steve"
-USER_INPUT = "Hello"
+USER_INPUT = "What is my name?"
 OPENAI_API_KEY = ""  # Replace securely
 
 client = OpenAI(api_key=OPENAI_API_KEY)
