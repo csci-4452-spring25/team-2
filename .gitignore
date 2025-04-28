@@ -24,7 +24,7 @@ hs_err_pid*
 replay_pid*
 
 #LLM chat history ignore
-LLM/player_chat_history.json
+*/player_chat_history.json
 
 #Default ignored files
 /shelf/

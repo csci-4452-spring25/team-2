@@ -31,7 +31,7 @@ public class LLMCommand implements CommandExecutor {
 
         StringBuilder errorBuilder = new StringBuilder();
         try {
-            File currentDir = new File(".");
+            File currentDir = new File("./LLM");
 
             // Build the command: python3 <script> <player_name> <message>
             ProcessBuilder processBuilder = new ProcessBuilder(
