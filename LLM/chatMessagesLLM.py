@@ -3,8 +3,10 @@ import os
 import sys
 from openai import OpenAI
 
-# === CONFIGURATION ===
+# Config
 SAVE_FILE = "player_chat_history.json"
+OPENAI_API_KEY = ""  # Replace securely
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 def main():
     if len(sys.argv) != 3:
@@ -51,7 +53,7 @@ def main():
     with open(SAVE_FILE, "w") as f:
         json.dump(all_data, f, indent=4)
 
-    # === OUTPUT the assistant response
+    # Output
     print(response.output_text)
 
 if __name__ == "__main__":

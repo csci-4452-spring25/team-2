@@ -3,16 +3,16 @@ import os
 import sys
 import boto3
 
-# === CONFIGURATION ===
+# Config
 SAVE_FILE = "player_chat_history.json"
 DYNAMODB_TABLE = "PlayerChatLogs"
 REGION_NAME = "us-west-2"
 
-# === AWS INITIALIZATION ===
+# AWS
 dynamodb = boto3.resource('dynamodb', region_name=REGION_NAME)
 table = dynamodb.Table(DYNAMODB_TABLE)
 
-# === FUNCTION: PULL DATA FROM DYNAMODB INTO FILE ===
+# Pull Data into File
 def load_player_data_from_dynamodb():
     if not os.path.exists(SAVE_FILE):
         print(f"{SAVE_FILE} not found. Creating an empty file...")
@@ -27,7 +27,7 @@ def load_player_data_from_dynamodb():
     
     print(f"Pulled {len(player_data)} players from DynamoDB and saved to {SAVE_FILE}.")
 
-# === FUNCTION: PUSH LOCAL FILE TO DYNAMODB ===
+# Push file into database
 def upload_player_data_to_dynamodb():
     if not os.path.exists(SAVE_FILE):
         print(f"Error: {SAVE_FILE} not found. Nothing to upload.")
@@ -43,7 +43,7 @@ def upload_player_data_to_dynamodb():
 
     print("All player data uploaded to DynamoDB.")
 
-# === MAIN ENTRY POINT ===
+# Main entry
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: python sync_dynamodb.py [upload|download]")
