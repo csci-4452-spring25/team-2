@@ -36,7 +36,6 @@ for message in player_entry["chat"]:
 
 conversation += f"User: {USER_INPUT}"
 
-
 # Call API
 response = client.responses.create(
     model="gpt-4o",
