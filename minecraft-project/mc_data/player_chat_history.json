@@ -1,0 +1,15 @@
+[
+    {
+        "player": "Middlehero",
+        "chat": [
+            {
+                "user": "test",
+                "assistant": "Hello, Middlehero! How can I assist you today?"
+            },
+            {
+                "user": "How do i make a crafting table",
+                "assistant": "To make a crafting table, open your inventory, turn 4 wood planks into the crafting area, and arrange them in a 2x2 pattern."
+            }
+        ]
+    }
+]
