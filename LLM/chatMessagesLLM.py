@@ -5,8 +5,6 @@ from openai import OpenAI
 
 # === CONFIGURATION ===
 SAVE_FILE = "player_chat_history.json"
-OPENAI_API_KEY = ""  # Replace securely
-client = OpenAI(api_key=OPENAI_API_KEY)
 
 def main():
     if len(sys.argv) != 3:
