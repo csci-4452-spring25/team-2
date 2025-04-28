@@ -2,7 +2,3 @@ name: chatPlugin
 version: '1.0-SNAPSHOT'
 main: team2.chatPlugin.ChatPlugin
 api-version: '1.19'
-
-commands:
-  llm:
-    description: Communication With Large Language Model (Chat GPT)

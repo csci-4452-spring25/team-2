@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 {"@type":"me.itzg.helpers.paper.PaperManifest","timestamp":"2025-04-28T05:12:38.704832119Z","files":["paper-1.19.2-307.jar"],"minecraftVersion":"1.19.2","project":"paper","build":307,"customDownloadUrl":null}
+=======
+{"@type":"me.itzg.helpers.paper.PaperManifest","timestamp":"2025-04-28T06:13:27.976283238Z","files":["paper-1.19.2-307.jar"],"minecraftVersion":"1.19.2","project":"paper","build":307,"customDownloadUrl":null}
+>>>>>>> Stashed changes

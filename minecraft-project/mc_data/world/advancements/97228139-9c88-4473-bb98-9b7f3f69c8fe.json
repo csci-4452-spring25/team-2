@@ -13,7 +13,8 @@
   },
   "minecraft:adventure/adventuring_time": {
     "criteria": {
-      "minecraft:dark_forest": "2025-04-15 13:57:43 +0000"
+      "minecraft:dark_forest": "2025-04-15 13:57:43 +0000",
+      "minecraft:stony_shore": "2025-04-28 06:03:54 +0000"
     },
     "done": false
   },
