@@ -29,6 +29,8 @@ public class LLMCommand implements CommandExecutor {
         // Join all the arguments into a single string
         String message = String.join(" ", args);
 
+        player.sendMessage("§a[ChatPlugin]§f Message Recieved: " + message);
+
         StringBuilder errorBuilder = new StringBuilder();
         try {
             File currentDir = new File("./LLM");
