@@ -15,3 +15,8 @@ variable "ec2_key_name" {
   description = "EC2 SSH key name"
   type        = string
 }
+
+variable "github_token" {
+  type      = string
+  sensitive = true
+}

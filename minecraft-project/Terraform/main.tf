@@ -3,17 +3,19 @@ provider "aws" {
 }
 
 resource "aws_instance" "minecraft_server" {
-  ami           = var.ec2_ami
-  instance_type = var.ec2_instance_type
-  security_groups = [aws_security_group.Minecraft_Security.name]
-  user_data = file("user-data.sh") # optional: install Docker, Docker Compose
+  ami                    = var.ec2_ami
+  instance_type          = var.ec2_instance_type
+  security_groups        = [aws_security_group.Minecraft_Security.name]
+  associate_public_ip_address = true
+  iam_instance_profile   = aws_iam_instance_profile.minecraft_profile.name
+
+  user_data = templatefile("${path.module}/user-data.sh", {
+    github_token = var.github_token
+  })
 
   tags = {
     Name = "minecraft-llm-server"
   }
-
-  iam_instance_profile = aws_iam_instance_profile.minecraft_profile.name
-  associate_public_ip_address = true
 }
 
 resource "aws_iam_role" "minecraft_role" {
