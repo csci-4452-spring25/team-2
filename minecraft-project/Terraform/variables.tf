@@ -3,7 +3,7 @@ variable "aws_region" {
 }
 
 variable "ec2_ami" {
-  description = "ami-05572e392e80aee89"
+  description = "AMI ID to use"
   type        = string
 }
 

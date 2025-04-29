@@ -5,9 +5,9 @@ provider "aws" {
 resource "aws_instance" "minecraft_server" {
   ami           = var.ec2_ami
   instance_type = var.ec2_instance_type
-  key_name      = var.ec2_key_name
+  # key_name      = var.ec2_key_name
 
-  user_data = file("user-data.sh") # optional: install Docker, Docker Compose
+  user_data = file("user-data.sh")
 
   tags = {
     Name = "minecraft-llm-server"
