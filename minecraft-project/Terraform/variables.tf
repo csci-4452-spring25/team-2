@@ -8,7 +8,7 @@ variable "ec2_ami" {
 }
 
 variable "ec2_instance_type" {
-  default = "t2.small"
+  default = "t3.small"
 }
 
 variable "ec2_key_name" {
