@@ -5,7 +5,8 @@ from openai import OpenAI
 
 # Config
 SAVE_FILE = "player_chat_history.json"
-OPENAI_API_KEY = ""  # Replace securely
+# OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY = ""
 client = OpenAI(api_key=OPENAI_API_KEY)
 
 def main():
