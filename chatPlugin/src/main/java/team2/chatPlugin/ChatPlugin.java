@@ -20,16 +20,6 @@ public final class ChatPlugin extends JavaPlugin implements Listener {
     public void onEnable() {
         Bukkit.getPluginManager().registerEvents(this, this);
         getCommand("llm").setExecutor(new LLMCommand());
-    }
-
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-    }
-
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-        Bukkit.broadcast(Component.text("§a[ChatPlugin]§f Welcome, " + event.getPlayer().getName() + "!"));
 
         try {
             File currentDir = new File("./LLM");
@@ -45,6 +35,16 @@ public final class ChatPlugin extends JavaPlugin implements Listener {
             throw new RuntimeException(e);
         }
 
+    }
+
+    @Override
+    public void onDisable() {
+        // Plugin shutdown logic
+    }
+
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        Bukkit.broadcast(Component.text("§a[ChatPlugin]§f Welcome, " + event.getPlayer().getName() + "!"));
     }
 
     @EventHandler
