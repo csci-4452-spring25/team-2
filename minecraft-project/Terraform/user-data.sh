@@ -1,5 +1,3 @@
 #!/bin/bash
-apt-get update
-apt-get install -y docker.io
+apt update && apt install -y docker.io docker-compose
 usermod -aG docker ubuntu
-docker run -d -p 25565:25565 your-docker-image-name
