@@ -29,7 +29,7 @@ public final class ChatPlugin extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        event.getPlayer().sendMessage(Component.text("§a[ChatPlugin]§f Hello, " + event.getPlayer().getName() + "!"));
+        Bukkit.broadcast(Component.text("§a[ChatPlugin]§f Welcome, " + event.getPlayer().getName() + "!"));
 
         try {
             File currentDir = new File("./LLM");
@@ -49,7 +49,7 @@ public final class ChatPlugin extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerExit(PlayerQuitEvent event){
-        event.getPlayer().sendMessage(Component.text("§a[ChatPlugin]§f Goodbye, " + event.getPlayer().getName() + "!"));
+        Bukkit.broadcast(Component.text("§a[ChatPlugin]§f Goodbye, " + event.getPlayer().getName() + "!"));
 
         try {
             File currentDir = new File("./LLM");
