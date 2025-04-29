@@ -34,7 +34,7 @@ public final class ChatPlugin extends JavaPlugin implements Listener {
         try {
             File currentDir = new File("./LLM");
             ProcessBuilder processBuilder = new ProcessBuilder(
-                    "python3", "load_SaveChat", "download"
+                    "python3", "load_SaveChat.py", "download"
             );
 
             processBuilder.directory(currentDir);
@@ -54,7 +54,7 @@ public final class ChatPlugin extends JavaPlugin implements Listener {
         try {
             File currentDir = new File("./LLM");
             ProcessBuilder processBuilder = new ProcessBuilder(
-                    "python3", "load_SaveChat", "upload"
+                    "python3", "load_SaveChat.py", "upload"
             );
 
             processBuilder.directory(currentDir);
