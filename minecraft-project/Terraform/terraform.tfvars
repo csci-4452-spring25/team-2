@@ -1,0 +1,7 @@
+aws_region            = "us-west-2"
+ec2_key_pair          = "your-keypair-name"
+minecraft_instance_type = "t3.medium"
+dynamodb_table_name   = "minecraft-chat-history"
+openai_secret_arn     = "arn:aws:secretsmanager:us-east-1:123456789012:secret:minecraft/llm-xxxxxx"
+vpc_id                = "vpc-xxxxxxxx"
+ec2_ami               = "ami-xxxxxxxxxxxxxxxxx"
