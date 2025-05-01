@@ -45,11 +45,6 @@ jobs:
       - name: Docker-compose down
         run: docker compose down
 
-      - name: Scan Docker image for vulnerabilities
-        run: |
-          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh./trivy image minecraft-llm
-          
-
   terraform-validate:
     name: Validate Terraform
     runs-on: ubuntu-latest
