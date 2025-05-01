@@ -79,3 +79,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      - name: Compile plugin
+        run: |
+          mkdir -p build
+          find . -name "*.java" > sources.txt
+          javac -d build @sources.txt
