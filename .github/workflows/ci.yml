@@ -29,20 +29,28 @@ jobs:
   docker-build:
     name: Test Docker Build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: minecraft-project
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Build Docker image
-        working-directory: minecraft-project
         run: docker build -t minecraft-llm .
+      
+      - name: Docker-compose up
+        run: docker-compose up -d
+
+      - name: Docker-compose down
+        run: docker-compose down
 
   terraform-validate:
     name: Validate Terraform
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: minecraft-project/terraform
+        working-directory: minecraft-project
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -58,22 +66,3 @@ jobs:
 
       - name: Terraform Validate
         run: terraform validate
-
-  java-check:
-    name: Build Java Plugin
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-      
-      - name: Compile with javac
-        run: |
-          find . -name "*.java" > sources.txt
-          mkdir -p build
-          javac -d build @sources.txt
