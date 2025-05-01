@@ -81,5 +81,5 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Maven
-        working-directory: chatPlugin/pom.xml
+        working-directory: chatPlugin
         run: mvn clean package
