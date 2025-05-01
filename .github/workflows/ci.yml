@@ -45,10 +45,9 @@ jobs:
       - name: Docker-compose down
         run: docker compose down
 
-      - name: Lint Dockerfile
-        uses: hadolint/hadolint-action@v3.1.0
-        with:
-          dockerfile: minecraft-project/Dockerfile
+      - name: Scan Docker image for vulnerabilities
+        run: |
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh./trivy image minecraft-llm
           
 
   terraform-validate:
