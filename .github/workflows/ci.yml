@@ -47,8 +47,8 @@ jobs:
 
       - name: Lint Dockerfile
         run: |
-          pip install dockerfile-lint
-          dockerfile-lint -f Dockerfile
+          pip install hadolint
+          hadolint Dockerfile
 
   terraform-validate:
     name: Validate Terraform
