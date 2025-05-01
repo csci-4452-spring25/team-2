@@ -67,8 +67,8 @@ jobs:
       - name: Terraform Validate
         run: terraform validate
 
-  java-check:
-    name: Build Java Plugin
+  java-plugins:
+    name: Build with Maven
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -80,8 +80,5 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Compile plugin
-        run: |
-          mkdir -p build
-          find . -name "*.java" > sources.txt
-          javac -d build @sources.txt
+      - name: Build with Maven
+        run: mvn clean package
