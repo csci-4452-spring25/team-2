@@ -46,9 +46,10 @@ jobs:
         run: docker compose down
 
       - name: Lint Dockerfile
-        run: |
-          pip install hadolint
-          hadolint Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
+          
 
   terraform-validate:
     name: Validate Terraform
