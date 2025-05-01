@@ -1,17 +1,19 @@
-name: CI Pipeline
+name: CI Build & Lint
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [main]
 
 jobs:
   lint-and-test-python:
+    name: Python Files
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
@@ -21,25 +23,28 @@ jobs:
 
       - name: Run Python syntax check
         run: |
-          python -m py_compile minecraft-project/mc_data/LLM/chatMessagesLLM.py
+          python -m py_compile mc_data/LLM/chatMessagesLLM.py
+          python -m py_compile mc_data/LLM/load_saveChat.py
 
   docker-build:
+    name: Test Docker Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build Docker image
         run: docker build -t minecraft-llm .
 
   terraform-validate:
+    name: Validate Terraform
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./terraform
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -52,3 +57,22 @@ jobs:
 
       - name: Terraform Validate
         run: terraform validate
+
+  java-check:
+    name: Build Java Plugin
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      
+      - name: Compile with javac
+        run: |
+          find . -name "*.java" > sources.txt
+          mkdir -p build
+          javac -d build @sources.txt
