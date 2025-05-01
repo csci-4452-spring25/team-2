@@ -24,7 +24,7 @@ jobs:
       - name: Run Python syntax check
         run: |
           python -m py_compile minecraft-project/mc_data/LLM/chatMessagesLLM.py
-          python -m py_compile minecraft-project\mc_data\LLM\load_saveChat.py
+          python -m py_compile minecraft-project/mc_data/LLM/load_saveChat.py
 
   docker-build:
     name: Test Docker Build
@@ -34,6 +34,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Docker image
+        working-directory: ./Team-2/minecraft-project
         run: docker build -t minecraft-llm .
 
   terraform-validate:
@@ -41,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: minecraft-project/terraform
+        working-directory: ./Team-2/minecraft-project/terraform
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
