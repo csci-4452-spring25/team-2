@@ -45,6 +45,11 @@ jobs:
       - name: Docker-compose down
         run: docker compose down
 
+      - name: Lint Dockerfile
+        run: |
+          pip install dockerfile-lint
+          dockerfile-lint -f Dockerfile
+
   terraform-validate:
     name: Validate Terraform
     runs-on: ubuntu-latest
